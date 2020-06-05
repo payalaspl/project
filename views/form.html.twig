@@ -13,12 +13,12 @@
         {% endmacro %}
 
         {% import _self as forms %}
-
+        <p>{{msg}}</p>
         <form action="register.php" method="post">
-            <label>firstname</label>{{forms.input("frm_firstname",null,"text")}}
-            <label>lastname</label>{{forms.input("frm_lastname",null,"text")}}
-            <label>password</label>{{forms.input("frm_password",null,"password")}}
-            <label>email</label>{{forms.input("frm_email",null,"email")}}
+            <label>firstname</label>{{forms.input("firstname",null,"text")}}
+            <label>lastname</label>{{forms.input("lastname",null,"text")}}
+            <label>password</label>{{forms.input("password",null,"password")}}
+            <label>email</label>{{forms.input("email",null,"email")}}
             {{forms.input("frm_submit","Register","submit")}}
         </form>
     </body>
