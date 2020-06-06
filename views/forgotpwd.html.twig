@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            login
+        </title>
+    </head>
+    <body>
+        {% macro input(name, value, type, size) %}
+            <div class="form-group">
+                <input type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" required />
+            </div>
+        {% endmacro %}
+
+        {% import _self as forms %}
+        <p>{{msg}}</p>
+        <form action="forgotpwd.php" method="post">
+            <label>email</label>{{forms.input("email",null,"email")}}
+            {{forms.input("frm_submit","Submit","submit")}}
+        </form>
+    </body>
+</html>
+
+
+
