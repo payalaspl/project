@@ -13,12 +13,12 @@
         {% endmacro %}
         {% import _self as forms %}
         <p>{{msg}}</p>
-        {% set email =  app.request.get('email') %}
+      
         <form action="changepwd.php" method="post">
             <label>password</label>{{forms.input("password",null,"password")}}
             <label>confirm password</label>{{forms.input("cpassword",null,"password")}}
             
-            <input type="hidden" value="{{email1}}" name="email">
+            <input type="hidden" value="{{id}}" name="id">
             {{forms.input("frm_submit","Submit","submit")}}
         </form>
     </body>

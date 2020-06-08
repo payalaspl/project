@@ -8,15 +8,15 @@ require_once __DIR__ . "/models/Users.php";
 // get latest posts from DB
 
 $objUsers = new Users();
-if(isset($_POST['frm_submit']) && $_POST['password'] != "" && $_POST['email'] != "" && isset($_POST['email'])){
+if(isset($_POST['frm_submit']) && $_POST['password'] != "" && $_POST['id'] != "" && isset($_POST['id'])){
 	if($_POST['password'] == $_POST['cpassword']){
-		
-			$checkemail = $objUsers->checkemail("select email from users where email = '".$_POST['email']."'");
+			$email = $objUsers->decrypt_fun($_POST['id']);
+			$checkemail = $objUsers->checkemail("select email from users where email = '".$email."'");
 			if($checkemail){
-				$checkemail = $objUsers->updatetoken("update users set `password` = '".md5($_POST['password'])."' where email = '".$_POST['email']."'");
+				$checkemail = $objUsers->updatetoken("update users set `password` = '".md5($_POST['password'])."' where email = '".$email."'");
 		    	$msg = "password change succefully";
 			}else{
-				$msg = "wrong email id";
+				$msg = "wrong url link";
 			}
 		
 	}else{

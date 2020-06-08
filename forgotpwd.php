@@ -11,7 +11,8 @@ $objUsers = new Users();
 if(isset($_POST['frm_submit']) && $_POST['email'] != ""){
 	$checkemail = $objUsers->checkemail("select email from users where email = '".$_POST['email']."'");
 	if($checkemail){
-		$msg = "Please check your email to reset password!";
+		$id = $objUsers->encrypt_fun($checkemail['email']);
+		$msg = $id."Please check your email to reset password!";
 	}else{
 		$msg = 'No User Found';
 	}
