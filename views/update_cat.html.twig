@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            login
+        </title>
+    </head>
+    <body>
+        <p>{{msg}}</p>
+        <form action="add_categories.php" method="post">
+            <label>Name</label><div class="form-group"><input type="text" name="name" value="{{name}}"></div>
+            <label>Description</label><div class="form-group"><textarea name="description" rows="10" cols="40">{{description}}</textarea></div>
+            <input type="hidden" name="id" value="{{id}}">
+            <div class="form-group">
+            <input type="submit" name="frm_submit" value="Submit">
+            </div>
+        </form>
+    </body>
+</html>

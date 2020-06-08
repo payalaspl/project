@@ -14,10 +14,13 @@
 
         {% import _self as forms %}
         <p>{{msg}}</p>
-        <form action="login.php" method="post">
+        <form action="admin_login.php" method="post">
             <label>email</label>{{forms.input("email",null,"email")}}
             <label>password</label>{{forms.input("password",null,"password")}}
             {{forms.input("frm_submit","Login","submit")}}
         </form>
     </body>
 </html>
+
+
+
