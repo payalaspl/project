@@ -18,7 +18,11 @@
            </tr>
             {% endfor %}
              
+            
         </table>
+        {% for i in 1..count %}
+                    <a href="categories.php?page={{ i }}">{{ i }}</a>
+            {% endfor %}
     </body>
 </html>
 
