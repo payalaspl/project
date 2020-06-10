@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            add article
+        </title>
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+  
+    </head>
+    <body>
+        <p>{{msg}}</p>
+        <form action="add_article.php" method="post" enctype="multipart/form-data">
+            <label>Name</label><div class="form-group"><input  required type="text" name="name" value="{{name}}"></div>
+            <label>Description</label><div class="form-group"><textarea id="description" name="description" rows="10" cols="40" required>{{description}}</textarea></div>
+                <div class="form-group">
+                <select name="cat[]" id="cat" multiple required>
+                  {% for cat in categories %}
+                  <option value="{{cat.id}}">{{cat.name}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+            <div><input type="file" name="image" required="" /></div>
+            <div class="form-group">
+            <input type="submit" name="frm_submit" value="Submit">
+            </div>
+        </form>
+        <script>
+CKEDITOR.replace('description');</script>
+    </body>
+</html>

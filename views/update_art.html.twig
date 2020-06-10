@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            update article
+        </title>
+        <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    </head>
+    <body>
+        <p>{{msg}}</p>
+        <form action="edit_art.php" method="post" enctype="multipart/form-data">
+            <label>Name</label><div class="form-group"><input  required type="text" name="name" value="{{name}}"></div>
+            <label>Description</label><div class="form-group"><textarea id="description" name="description" rows="10" cols="40" required>{{description}}</textarea></div>
+                <div class="form-group">
+                <select name="cat[]" id="cat" multiple required>
+                  {% for cat in categories %}
+                    {% if cat.id  in cat_name %}
+                        <option value="{{cat.id}}" selected="">{{cat.name}}</option>
+                    {% else %}
+                        <option value="{{cat.id}}">{{cat.name}}</option>
+                    {% endif %}
+                 
+                  {% endfor %}
+                </select>
+            </div>
+            <input type="hidden" name="id" value="{{id}}">
+            <input type="hidden" name="oldimg" value="{{oldimage}}">
+            <div><input type="file" name="image" />
+                <img src="{{image}}">
+            </div>
+            <div class="form-group">
+            <input type="submit" name="frm_submit" value="Submit">
+            </div>
+        </form>
+        <script>
+CKEDITOR.replace('description');</script>
+    </body>
+</html>
+

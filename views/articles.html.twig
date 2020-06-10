@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Articles list
+        </title>
+    </head>
+    <body>
+        <table border="1">
+            <th>Name</th>
+            <th>descrption</th>
+            <th>category name</th>
+            <th>image</th>
+            <th>Action</th>
+            {% for art in articles %}
+            <tr>
+               <td>{{ art.name|e }}</td>
+               <td>{{ art.description|e }}</td>
+               <td>{{ art.cat_name|e }}</td>
+               <td><img src="uploads/thumbs/{{art.image}}"></td>
+               <td><a href="update_art.php?id={{ art.id }}">Update</a> | <a href="delete_art.php?id={{art.id}}">Delete</a></td>
+           </tr>
+            {% endfor %}
+             
+            
+        </table>
+    </body>
+</html>
+
+

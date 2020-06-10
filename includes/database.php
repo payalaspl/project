@@ -36,10 +36,18 @@ class database implements DB_interface
   }
   public function execute($sql){
   	$result = mysqli_query($this->conn,$sql);
-	if(mysqli_affected_rows($result) > 0){
-		return true;
-	}else{
-		return false;
-	}
+  	if(mysqli_affected_rows($this->conn) > 0){
+  		return true;
+  	}else{
+  		return false;
+  	}
+  }
+  public function execute_insert($sql){
+    $result = mysqli_query($this->conn,$sql);
+    if(mysqli_insert_id($this->conn) > 0){
+      return mysqli_insert_id($this->conn);
+    }else{
+      return false;
+    }
   }
 }
