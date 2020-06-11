@@ -9,8 +9,9 @@ require_once __DIR__ . "/models/Users.php";
 
 $objUsers = new Users();
 if(isset($_POST['frm_submit']) && $_POST['email'] != ""){
-	$checkemail = $objUsers->checkemail("select email from users where email = '".$_POST['email']."' and token = '1' and password='".md5($_POST['password'])."'");
+	$checkemail = $objUsers->checkemail("select email,id from users where email = '".$_POST['email']."' and token = '1' and password='".md5($_POST['password'])."'");
 	if($checkemail){
+		$_SESSION['user_login'] = $checkemail['id'];
 		$msg = "login successfull";
 	}else{
 		$checkemail = $objUsers->checkemail("select email from users where email = '".$_POST['email']."' and password='".md5($_POST['password'])."' and token != '1'");

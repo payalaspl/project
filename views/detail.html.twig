@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Posts list
+        </title>
+    </head>
+    <body>
+        <div border="1">
+            
+                <p><img src="uploads/thumbs/{{art.image}}"></p>
+                <p>Name : {{ art.name|e }}<span>({{ art.count_like|e }} likes)</span></p>
+                {% if user_login is not null %}
+                    <p>Description : {{ art.description|raw }}</p>
+                    <a href="add_like.php?id={{art.id}}">like</a>
+                {% else %}
+                    <p>Description : {{ art.description|striptags|slice(0,100)|raw }}</p>
+                {% endif %}
+        </div>
+         
+    </body>
+</html>
+

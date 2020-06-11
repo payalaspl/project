@@ -6,11 +6,15 @@
         </title>
     </head>
     <body>
-        <table border="1">
-            <th>Message</th>
-            {% for post in posts %}
-                <tr><td>{{ post.name|e }}</td></tr>
+        <div border="1">
+            {% for art in articles %}
+                <p><img src="uploads/thumbs/{{art.image}}"></p>
+                <p>Name : {{ art.name|e }}</p>
+                <p>Description : {{ art.description|striptags|slice(0,100)|raw }}<a href="detail_art.php?id={{art.id}}">read more</a></p>
             {% endfor %}
-        </table>
+        </div>
+         {% for i in 1..count %}
+                    <a href="home.php?page={{ i }}">{{ i }}</a>
+            {% endfor %}
     </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 class Users extends database {
 	public function checkemail($sql){
-		$data = $this->selectone($sql);
+		$data = $this->selectOne($sql);
 		return $data;
 	}
 	public function insert($sql){
@@ -22,6 +22,10 @@ class Users extends database {
 		$decryption=openssl_decrypt ($encryption, 'AES-128-CTR',  
         ENCRYPTION_KEY, 0, ENCRYPTION_IV);
 		return $decryption;
+	}
+	public function insert_id($sql){
+		$data = $this->execute_insert($sql);
+		return $data;
 	}
 }
 

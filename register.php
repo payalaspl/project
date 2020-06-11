@@ -13,9 +13,9 @@ if(isset($_POST['frm_submit']) && $_POST['email'] != ""){
 	if($checkemail){
 		$msg = "alerady exits email";
 	}else{
-		$users = $objUsers->insert("insert into users(`firstname`,`lastname`,`email`,`password`,`token`) value('".$_POST['firstname']."','".$_POST['lastname']."','".$_POST['email']."','".md5($_POST['password'])."','".md5(rand())."')");
+		$users = $objUsers->insert_id("insert into users(`firstname`,`lastname`,`email`,`password`,`token`) value('".$_POST['firstname']."','".$_POST['lastname']."','".$_POST['email']."','".md5($_POST['password'])."','".md5(rand())."')");
 		// print_r($users);exit();
-		
+		$_SESSION['user_login'] = $users;
 		$msg = "register successfull";
 		
 	}
