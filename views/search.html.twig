@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Posts list
+        </title>
+    </head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <body>
+        <div border="1">
+            <div class="post-search-panel">
+                <input type="text" id="keywords" placeholder="Type keywords..." onkeyup="searchFilter();"/>
+               
+                 <select name="cat[]" multiple id="sortBy" onchange="searchFilter();">
+                  {% for cat in categories %}
+                  <option value="{{cat.id}}">{{cat.name}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="post-wrapper">
+            <!-- Loading overlay -->
+            <div class="loading-overlay"><div class="overlay-content">Loading...</div></div>
+            
+            <!-- Post list container -->
+            <div id="postContent">
+                <div class="post-list"> 
+                    {% for art in articles %}
+                        <p><img src="uploads/thumbs/{{art.image}}"></p>
+                        <p>Name : {{ art.name|e }}</p>
+                        <p>Description : {{ art.description|raw }}</p>
+                    {% endfor %}
+                </div>
+                {{html|raw}}
+            </div>
+        </div>
+    </body>
+   
+    <script>
+        // Show loading overlay when ajax request starts
+        $( document ).ajaxStart(function() {
+            $('.loading-overlay').show();
+        });
+
+        // Hide loading overlay when ajax request completes
+        $( document ).ajaxStop(function() {
+            $('.loading-overlay').hide();
+        });
+    </script>
+    <script>
+        function searchFilter(page_num) {
+            page_num = page_num?page_num:0;
+            var keywords = $('#keywords').val();
+            var sortBy = $('#sortBy').val();
+            $.ajax({
+                type: 'POST',
+                url: 'getData.php',
+                data:'page='+page_num+'&keywords='+keywords+'&sortBy='+sortBy,
+                beforeSend: function () {
+                    $('.loading-overlay').show();
+                },
+                success: function (html) {
+                    //alert(html);
+                    $('#postContent').html(html);
+                    $('.loading-overlay').fadeOut("slow");
+                }
+            });
+        }
+    </script>
+</html>
+
+
